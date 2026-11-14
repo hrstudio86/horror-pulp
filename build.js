@@ -28,9 +28,10 @@ const schede = prodotti.map((p, i) => `
         <h2>${esc(p.nome)}</h2>
         <p class="testo">${esc(p.testo)}</p>
         <img class="maglia" src="img/${p.slug}-maglia.png" alt="T-shirt nera ${esc(p.nome)}" loading="lazy">
-        <p class="dettagli">T-shirt nera unisex &middot; stampa fronte &middot; taglie S&ndash;3XL</p>
+        <p class="dettagli">T-shirt nera uomo (S&ndash;3XL) e donna (S&ndash;XL) &middot; stampa fronte</p>
         <p class="prezzo">${PREZZO}</p>
-        <a class="compra" href="${NEGOZIO}${p.url}" target="_blank" rel="noopener">Compra</a>
+        <div class="tasti"><a class="compra" href="${NEGOZIO}${p.url}" target="_blank" rel="noopener">Compra uomo</a>
+        <a class="compra chiaro" href="${NEGOZIO}${p.url.replace('t-shirt-', 't-shirt-donna-')}" target="_blank" rel="noopener">Compra donna</a></div>
       </div>
     </article>`).join('\n');
 
@@ -68,6 +69,11 @@ const html = `<!doctype html>
   .testo { color:#c9c1af; margin:0 0 8px; max-width:440px; }
   .maglia { width:min(100%, 300px); margin:18px 0 14px; border-radius:4px; }
   .dettagli { color:var(--grigio); font-size:15px; letter-spacing:.06em; text-transform:uppercase; margin:0; }
+  .tasti { display:flex; flex-wrap:wrap; gap:12px; }
+  .compra { padding:16px 28px; }
+  .compra.chiaro { background:transparent; color:var(--osso); border-color:var(--osso); }
+  .compra.chiaro:hover, .compra.chiaro:focus-visible { background:var(--osso); color:var(--nero); }
+  @media (max-width:820px) { .tasti { justify-content:center; } }
   .prezzo { font-size:40px; font-weight:600; margin:8px 0 18px; }
   footer { text-align:center; padding:64px 16px 80px; color:var(--grigio); font-size:15px; }
   footer p { max-width:620px; margin:0 auto 22px; }
